@@ -1,0 +1,128 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #F5F7FA;
+  color: #2C3E50;
+  overflow: hidden;
+}
+
+.landing .center-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 20px;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #4A90E2;
+  text-shadow: 2px 2px 0 #fff;
+}
+
+.description {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+.start-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #4A90E2;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.emoji-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+  perspective: 1000px;
+}
+
+.emoji {
+  position: absolute;
+  font-size: 2rem;
+  will-change: transform;
+  animation: float3D linear infinite;
+}
+
+@keyframes float3D {
+  0% {
+    transform: translate3d(var(--x), var(--y), 0px) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: translate3d(calc(var(--x) + 20px), calc(var(--y) - 30vh), 200px) rotate(360deg);
+  }
+  100% {
+    transform: translate3d(var(--x), var(--y), -400px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #F5F7FA;
+}
+
+.chat-container {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.message {
+  margin: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  max-width: 70%;
+}
+
+.user {
+  align-self: flex-end;
+  background-color: #7ED6DF;
+}
+
+.bot {
+  align-self: flex-start;
+  background-color: #4A90E2;
+  color: white;
+}
+
+.input-area {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+
+#userInput {
+  flex: 1;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 8px 0 0 8px;
+  border: 1px solid #ccc;
+}
+
+#sendBtn {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background: #4A90E2;
+  color: white;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+}
