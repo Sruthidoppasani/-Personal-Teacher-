@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: 'Inter', 'Roboto', 'Open Sans', sans-serif;
-            background-color: #e0f7fa;
+            background-color: #fdffff;
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -36,7 +36,7 @@
             display: flex;
             gap: 1rem;
             padding: 1rem;
-            background-color: #e3f2fd;
+            background-color: #feffff;
             border-radius: 0.5rem;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
@@ -67,16 +67,32 @@
         }
 
         .user-message {
-            background-color: #ffffff;
+            background-color: #d4ebfb;
             align-self: flex-end;
-            color: #0d47a1;
+            color: #000000;
         }
 
         .bot-message {
-            background-color: #b3e5fc;
+            background-color: #d4ebfb;
             align-self: flex-start;
-            color: #010508;
+            color: #000305;
         }
+        .bot-message table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.bot-message th, .bot-message td {
+    border: 1px solid #000000;
+    padding: 8px;
+    text-align: left;
+}
+
+.bot-message th {
+    background-color: #eeeaea;
+}
+
     </style>
 </head>
 <body>
@@ -96,36 +112,48 @@
     </footer>
 
     <script>
-        async function sendMessage() {
-            const input = document.getElementById("userInput");
-            const chat = document.getElementById("chatContainer");
-            const question = input.value.trim();
-            if (!question) return;
+    async function sendMessage() {
+        const input = document.getElementById("userInput");
+        const chat = document.getElementById("chatContainer");
+        const question = input.value.trim();
+        if (!question) return;
 
-            const userDiv = document.createElement("div");
-            userDiv.className = "user-message";
-            userDiv.textContent = question;
-            chat.appendChild(userDiv);
-            input.value = "";
+        // Show user message
+        const userDiv = document.createElement("div");
+        userDiv.className = "user-message";
+        userDiv.textContent = question;
+        chat.appendChild(userDiv);
+        input.value = "";
 
+        try {
             const response = await fetch("http://127.0.0.1:5000/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message: question })
             });
+
             const data = await response.json();
 
             const botDiv = document.createElement("div");
             botDiv.className = "bot-message";
-            botDiv.textContent = data.response || "Error: " + data.error;
+
+            // ✅ Use innerHTML to render tables, bold text, etc.
+            botDiv.innerHTML = data.response || "<span style='color:red;'>Error: " + data.error + "</span>";
+
             chat.appendChild(botDiv);
-
             chat.scrollTop = chat.scrollHeight;
+        } catch (error) {
+            const botDiv = document.createElement("div");
+            botDiv.className = "bot-message";
+            botDiv.innerHTML = "<span style='color:red;'>Error: " + error.message + "</span>";
+            chat.appendChild(botDiv);
         }
+    }
 
-        document.getElementById("userInput").addEventListener("keypress", function (e) {
-            if (e.key === "Enter") sendMessage();
-        });
-    </script>
+    document.getElementById("userInput").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") sendMessage();
+    });
+</script>
+
 </body>
 </html>
