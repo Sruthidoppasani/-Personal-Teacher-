@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/c70203ff-38ab-404a-bfa8-e6467f60bc68
+
 # 📚Personal-Teacher
 An AI-powered chatbot designed to act like a personal teacher — answering questions, explaining concepts, and guiding students across a variety of topics using the power of Google Gemini Pro.
 
