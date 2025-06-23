@@ -35,7 +35,7 @@ The **Personal Teacher Chatbot** is built to provide students with an interactiv
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/personal-teacher-chatbot.git
+git clone https://github.com/sruthidoppasani/personal-teacher-chatbot.git
 cd personal-teacher-chatbot
 
 # Install dependencies
