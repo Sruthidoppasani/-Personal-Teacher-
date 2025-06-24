@@ -37,8 +37,12 @@ The **Personal Teacher Chatbot** is built to provide students with an interactiv
 # Clone the repo
 git clone https://github.com/sruthidoppasani/personal-teacher-chatbot.git
 cd personal-teacher-chatbot
-
-# Install dependencies
+```
+**Install dependencies**
+```bash
 pip install -r requirements.txt
-# Run the chatbot
+```
+**Run the chatbot**
+```bash
 python chatbot.py
+```
